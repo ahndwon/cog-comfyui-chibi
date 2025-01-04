@@ -3,6 +3,7 @@ import shutil
 import tarfile
 import zipfile
 import mimetypes
+import json
 from PIL import Image
 from typing import List
 from cog import BasePredictor, Input, Path
@@ -19,9 +20,13 @@ INPUT_DIR = "/tmp/inputs"
 COMFYUI_TEMP_OUTPUT_DIR = "ComfyUI/temp"
 ALL_DIRECTORIES = [OUTPUT_DIR, INPUT_DIR, COMFYUI_TEMP_OUTPUT_DIR]
 
-with open("examples/api_workflows/advanced_live_portrait_api.json", "r") as file:
-    EXAMPLE_WORKFLOW_JSON = file.read()
+# Save your example JSON to the same directory as predict.py
+api_json_file = "workflow_api.json"
 
+# Force HF offline
+# os.environ["HF_DATASETS_OFFLINE"] = "1"
+# os.environ["TRANSFORMERS_OFFLINE"] = "1"
+# os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
 
 class Predictor(BasePredictor):
     def setup(self, weights: str):
@@ -93,12 +98,18 @@ class Predictor(BasePredictor):
                     )
         return file_extension
 
+    def update_workflow(self, workflow, **kwargs):
+        # Below is an example showing how to get the node you need and update the inputs
+
+        image_input = workflow["45"]["inputs"]
+        image_input["image"] = str(self.comfyUI.get_files(INPUT_DIR)[0])
+
+        sampler = workflow["3"]["inputs"]
+        sampler["seed"] = kwargs["seed"]
+        pass
+
     def predict(
         self,
-        workflow_json: str = Input(
-            description="Your ComfyUI workflow as JSON. You must use the API version of your workflow. Get it from ComfyUI using ‘Save (API format)’. Instructions here: https://github.com/fofr/cog-comfyui",
-            default="",
-        ),
         input_file: Path = Input(
             description="Input image, tar or zip file. Read guidance on workflows and input files here: https://github.com/fofr/cog-comfyui. Alternatively, you can replace inputs with URLs in your JSON workflow and the model will download them.",
             default=None,
@@ -124,7 +135,15 @@ class Predictor(BasePredictor):
         if input_file:
             self.handle_input_file(input_file)
 
-        wf = self.comfyUI.load_workflow(workflow_json or EXAMPLE_WORKFLOW_JSON)
+        with open(api_json_file, "r") as file:
+            workflow = json.loads(file.read())
+
+        self.update_workflow(
+            workflow,
+            seed=randomise_seeds,
+        )
+
+        wf = self.comfyUI.load_workflow(workflow)
 
         self.comfyUI.connect()
 

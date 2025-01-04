@@ -222,5 +222,21 @@
   {
     "repo": "https://github.com/kijai/ComfyUI-segment-anything-2",
     "commit": "059815e"
+  },
+  {
+    "repo": "https://github.com/kijai/ComfyUI-KJNodes",
+    "commit": "4c5c26a"
+  },
+  {
+    "repo": "https://github.com/chrisgoringe/cg-use-everywhere",
+    "commit": "ce510b9"
+  },
+  {
+    "repo": "https://github.com/StartHua/Comfyui_Gemini2",
+    "commit": "1f01f21"
+  },
+  {
+    "repo": "https://github.com/pythongosssss/ComfyUI-WD14-Tagger",
+    "commit": "d335017"
   }
 ]

@@ -1,0 +1,320 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 387471549396769,
+      "steps": 25,
+      "cfg": 5,
+      "sampler_name": "ddim",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "10",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "shiratakimixXL_v20.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": [
+        "24",
+        0
+      ],
+      "clip": [
+        "10",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "(cropped head), off-center, tilted head ,score_4, score_5, 3d, jpeg artifacts, username, watermark, signature, normal quality, worst quality, large head, low quality, text, error, missing fingers, extra digits, fewer digits, bad eye, (cropped hair), (cropped edge), (cropped subject),  cropped, tight frame, cut-off edges",
+      "clip": [
+        "10",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "10": {
+    "inputs": {
+      "lora_name": "Chibi_Head_Icon_v2.safetensors",
+      "strength_model": 0.8,
+      "strength_clip": 1,
+      "model": [
+        "4",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "11": {
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "12": {
+    "inputs": {
+      "transparency": true,
+      "model": "u2net",
+      "post_processing": true,
+      "only_mask": false,
+      "alpha_matting": false,
+      "alpha_matting_foreground_threshold": 240,
+      "alpha_matting_background_threshold": 10,
+      "alpha_matting_erode_size": 10,
+      "background_color": "none",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "Image Rembg (Remove Background)",
+    "_meta": {
+      "title": "Image Rembg (Remove Background)"
+    }
+  },
+  "21": {
+    "inputs": {
+      "model": "wd-v1-4-moat-tagger-v2",
+      "threshold": 0.05,
+      "character_threshold": 0.9500000000000001,
+      "replace_underscore": false,
+      "trailing_comma": false,
+      "exclude_tags": "",
+      "tags": "1girl, solo, breasts, looking_at_viewer, blush, short_hair, bangs, blue_eyes, skirt, blonde_hair, large_breasts, simple_background, shirt, long_sleeves, hat, bow, ribbon, hair_between_eyes, bare_shoulders, jewelry, medium_breasts, closed_mouth, underwear, green_eyes, standing, collarbone, panties, upper_body, cowboy_shot, pleated_skirt, earrings, frills, green_hair, choker, hand_up, miniskirt, necklace, off_shoulder, nail_polish, bra, arm_up, aqua_eyes, fingernails, see-through, black_panties, eyelashes, black_headwear, blue_background, black_choker, expressionless, hat_ribbon, blue_shirt, black_bra, hat_bow, black_nails, yellow_bow, arm_at_side, green_background, hand_in_own_hair, sun_hat, yellow_shirt, yellow_ribbon, hoop_earrings, green_shirt, off-shoulder_shirt, hand_on_headwear, spaghetti_strap, yellow_skirt, aqua_background, single_bare_shoulder, bra_strap, aqua_shirt",
+      "image": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "WD14Tagger|pysssss",
+    "_meta": {
+      "title": "WD14 Tagger 🐍"
+    }
+  },
+  "22": {
+    "inputs": {
+      "text": [
+        "21",
+        0
+      ],
+      "path": "./output/[time(%Y-%m-%d)]",
+      "filename_prefix": "ComfyUI",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "file_extension": ".txt",
+      "encoding": "utf-8"
+    },
+    "class_type": "Save Text File",
+    "_meta": {
+      "title": "Save Text File"
+    }
+  },
+  "24": {
+    "inputs": {
+      "delimiter": ",",
+      "clean_whitespace": "true",
+      "text_a": [
+        "41",
+        0
+      ],
+      "text_b": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "31": {
+    "inputs": {
+      "delimiter": ", ",
+      "clean_whitespace": "true",
+      "text_a": [
+        "40",
+        0
+      ],
+      "text_b": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "33": {
+    "inputs": {
+      "text": [
+        "37",
+        0
+      ],
+      "path": "./output/prompt-[time(%Y-%m-%d)]",
+      "filename_prefix": "ComfyUI",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "file_extension": ".txt",
+      "encoding": "utf-8"
+    },
+    "class_type": "Save Text File",
+    "_meta": {
+      "title": "Save Text File"
+    }
+  },
+  "37": {
+    "inputs": {
+      "model": "gemini-2.0-flash-exp",
+      "prompt": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "CXH_Gemini2_TX",
+    "_meta": {
+      "title": "CXH_Gemini2_TX"
+    }
+  },
+  "40": {
+    "inputs": {
+      "text": "Here is a list of tags extracted from a character image. Your task is to remove all tags unrelated to the face or facial features. Keep only tags that describe elements such as gender, eyes, eyes color, eyebrows, mouth, nose, hair, hair color, facial expressions, or other facial details. Return only the filtered tags."
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "41": {
+    "inputs": {
+      "text": "solo, (head focus), chibi, simple background, 1 girl, (outline, white outline: 1.1), head in center, full head, (not cropped), ((entire subject in frame)),  <lora:Chibi_Head_Icon:1> chibi"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "42": {
+    "inputs": {
+      "text": [
+        "21",
+        0
+      ],
+      "label": "Text Output"
+    },
+    "class_type": "Text to Console",
+    "_meta": {
+      "title": "Text to Console"
+    }
+  },
+  "43": {
+    "inputs": {
+      "text": [
+        "37",
+        0
+      ],
+      "label": "Text Output"
+    },
+    "class_type": "Text to Console",
+    "_meta": {
+      "title": "Text to Console"
+    }
+  },
+  "45": {
+    "inputs": {
+      "image": "aqua_girl.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  }
+}

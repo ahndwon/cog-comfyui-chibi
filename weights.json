@@ -138,7 +138,8 @@
     "v2-1_768-nonema-pruned.safetensors",
     "wd-illusion-fp16.safetensors",
     "x4-upscaler-ema.safetensors",
-    "zavychromaxl_v80.safetensors"
+    "zavychromaxl_v80.safetensors",
+    "shiratakimixXL_v20.safetensors"
   ],
   "UPSCALE_MODELS": [
     "4x-AnimeSharp.pth",
@@ -320,7 +321,8 @@
     "theovercomer8sContrastFix_sd15.safetensors",
     "theovercomer8sContrastFix_sd21768.safetensors",
     "Ton618-Epic-Realism-Flux-LoRA.safetensors",
-    "weight_slider-LECO-v1.safetensors"
+    "weight_slider-LECO-v1.safetensors",
+    "Chibi_Head_Icon_v2.safetensors"
   ],
   "EMBEDDINGS": [
     "bad_prompt_version2-neg.pt",
